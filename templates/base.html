@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TubeTale Analytics{% endblock %}</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #020617;
+            background-image:
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 50px 50px, 50px 50px;
+            background-attachment: fixed;
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        // Primary palette
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                            950: '#1e1b4b',
+                        },
+                        // Secondary palette
+                        secondary: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        },
+                        // Surface colors
+                        surface: {
+                            'dark-1': '#0f172a',
+                            'dark-2': '#1e293b',
+                            'dark-3': '#334155',
+                        },
+                        // Accent colors
+                        accent: {
+                            cyan: '#06b6d4',
+                            teal: '#14b8a6',
+                            rose: '#f43f5e',
+                            amber: '#f59e0b',
+                            sky: '#38bdf8',
+                        },
+                        // Legacy support
+                        dark: '#0f172a',
+                        darker: '#020617',
+                    },
+                    boxShadow: {
+                        'glow-sm': '0 0 10px rgba(99, 102, 241, 0.3)',
+                        'glow-md': '0 0 20px rgba(99, 102, 241, 0.4)',
+                        'glow-lg': '0 0 30px rgba(99, 102, 241, 0.5)',
+                        'elevation-1': '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
+                        'elevation-2': '0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12)',
+                        'elevation-3': '0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.10)',
+                        'elevation-4': '0 15px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.05)',
+                        'elevation-5': '0 20px 40px rgba(0, 0, 0, 0.2)',
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="min-h-screen text-white overflow-x-hidden selection:bg-primary-500/30 antialiased">
+
+    <!-- Premium Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-luxury border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo with gradient -->
+                <a href="/" class="flex items-center gap-3 group">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center luxury-shadow group-hover:scale-110 transition-transform">
+                        <i data-lucide="youtube" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span
+                        class="text-2xl font-black bg-gradient-to-r from-primary-300 to-secondary-400 bg-clip-text text-transparent">
+                        TubeTale
+                    </span>
+                </a>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#features"
+                        class="text-gray-300 hover:text-white font-medium transition-all hover:scale-105">Features</a>
+                    <a href="https://github.com/9mit/Youtube_Intelligence" target="_blank"
+                        class="flex items-center gap-2 text-gray-300 hover:text-white font-medium transition-all hover:scale-105">
+                        <i data-lucide="github" class="w-4 h-4"></i>
+                        GitHub
+                    </a>
+                    <a href="#contact"
+                        class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-primary-500 to-secondary-500 font-bold hover:scale-105 transition-all luxury-shadow">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content with top padding for fixed nav -->
+    <main class="pt-20">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Premium Footer - Minimal -->
+    <footer class="relative border-t border-white/10 mt-32">
+        <div class="max-w-7xl mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                <!-- Brand -->
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center luxury-shadow">
+                        <i data-lucide="youtube" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div>
+                        <div
+                            class="text-xl font-black bg-gradient-to-r from-primary-300 to-secondary-400 bg-clip-text text-transparent">
+                            TubeTale Analytics
+                        </div>
+                        <p class="text-sm text-gray-500">AI-Powered YouTube Intelligence</p>
+                    </div>
+                </div>
+
+                <!-- GitHub CTA -->
+                <a href="https://github.com/9mit/Youtube_Intelligence" target="_blank"
+                    class="group flex items-center gap-3 px-8 py-4 rounded-2xl glass-luxury border border-white/10 hover:border-primary-500/50 transition-all hover:scale-105 luxury-shadow">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition-all">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">View on</div>
+                        <div class="font-bold text-white group-hover:text-primary-400 transition-colors">GitHub
+                            Repository</div>
+                    </div>
+                    <i data-lucide="arrow-up-right"
+                        class="w-5 h-5 text-gray-500 group-hover:text-primary-400 transition-colors"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+
+    {% block scripts %}
+    {% endblock %}
+</body>
+
+</html>

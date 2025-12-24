@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Hero Section with Animated Background -->
+<section class="relative min-h-[90vh] flex items-center justify-center px-4">
+    <!-- Animated Background -->
+    <div class="hero-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <div class="relative z-10 text-center max-w-7xl mx-auto">
+        <!-- Premium Badge -->
+        <div class="inline-flex items-center gap-3 premium-badge mb-12 stagger-item">
+            <span class="relative flex h-3 w-3">
+                <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-primary-500 pulse-dot"></span>
+            </span>
+            <span class="text-sm font-bold tracking-wider uppercase text-primary-300">
+                ✨ AI-Powered YouTube Intelligence
+            </span>
+        </div>
+
+        <!-- Massive Heading -->
+        <h1 class="hero-title mb-10 px-4 stagger-item" style="animation-delay: 0.1s">
+            YouTube<br>
+            Intelligence<br>
+            <span style="color: #38bdf8;">Reimagined</span>
+        </h1>
+
+        <!-- Subtitle with better typography -->
+        <p class="text-2xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light mb-16 stagger-item"
+            style="animation-delay: 0.2s">
+            Unlock <span class="text-primary-400 font-semibold">deep narrative insights</span>,
+            battle comparisons, and truth verification with
+            <span class="text-glow text-primary-300 font-semibold">next-gen AI</span>
+        </p>
+    </div>
+</section>
+
+<!-- Mode Selection Cards - Luxury Bento Grid -->
+<section class="max-w-7xl mx-auto px-6 pb-32">
+    <div class="grid md:grid-cols-3 gap-10">
+
+        <!-- Solo Audit Card -->
+        <div class="luxury-card glass-luxury rounded-3xl p-12 cursor-pointer group relative overflow-hidden"
+            onclick="showMode('solo-form')">
+            <!-- Icon Container -->
+            <div
+                class="icon-container mb-10 p-6 rounded-3xl bg-gradient-to-br from-primary-500/30 to-primary-600/10 w-fit border border-primary-500/30">
+                <i data-lucide="user" class="w-16 h-16 text-primary-400"></i>
+            </div>
+
+            <!-- Content -->
+            <h3
+                class="text-4xl font-black mb-5 bg-gradient-to-r from-primary-300 to-primary-500 bg-clip-text text-transparent">
+                Solo Audit
+            </h3>
+            <p class="text-gray-300 leading-relaxed text-lg mb-8">
+                Deep-dive analytics into any YouTube channel's growth, content strategy, and audience sentiment with
+                <span class="text-primary-400 font-semibold">AI-powered insights</span>.
+            </p>
+
+            <!-- CTA -->
+            <div class="flex items-center gap-2 text-primary-400 font-bold group-hover:gap-4 transition-all">
+                Analyze Now
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </div>
+        </div>
+
+        <!-- Battle Arena Card -->
+        <div class="luxury-card glass-luxury rounded-3xl p-12 cursor-pointer group relative overflow-hidden"
+            onclick="showMode('battle-form')">
+            <!-- Icon Container -->
+            <div
+                class="icon-container mb-10 p-6 rounded-3xl bg-gradient-to-br from-secondary-500/30 to-secondary-600/10 w-fit border border-secondary-500/30">
+                <i data-lucide="swords" class="w-16 h-16 text-secondary-400"></i>
+            </div>
+
+            <!-- Content -->
+            <h3
+                class="text-4xl font-black mb-5 bg-gradient-to-r from-secondary-300 to-secondary-500 bg-clip-text text-transparent">
+                Battle Arena
+            </h3>
+            <p class="text-gray-300 leading-relaxed text-lg mb-8">
+                Compare 2-5 channels head-to-head on quality, consistency, and viewer trust with
+                <span class="text-secondary-400 font-semibold">statistical analysis</span>.
+            </p>
+
+            <!-- CTA -->
+            <div class="flex items-center gap-2 text-secondary-400 font-bold group-hover:gap-4 transition-all">
+                Start Battle
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </div>
+        </div>
+
+        <!-- Truth Auditor Card -->
+        <div class="luxury-card glass-luxury rounded-3xl p-12 cursor-pointer group relative overflow-hidden"
+            onclick="showMode('truth-form')">
+            <!-- Icon Container -->
+            <div
+                class="icon-container mb-10 p-6 rounded-3xl bg-gradient-to-br from-accent-sky/30 to-accent-cyan/10 w-fit border border-accent-sky/30">
+                <i data-lucide="shield-check" class="w-16 h-16 text-accent-sky"></i>
+            </div>
+
+            <!-- Content -->
+            <h3
+                class="text-4xl font-black mb-5 bg-gradient-to-r from-sky-300 to-cyan-400 bg-clip-text text-transparent">
+                Truth Auditor
+            </h3>
+            <p class="text-gray-300 leading-relaxed text-lg mb-8">
+                Fact-check claims in any video with AI-powered verification,
+                <span class="text-accent-sky font-semibold">source citation</span>, and confidence scores.
+            </p>
+
+            <!-- CTA -->
+            <div class="flex items-center gap-2 text-accent-sky font-bold group-hover:gap-4 transition-all">
+                Verify Truth
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Forms Section with Features Anchor -->
+<div id="features" class="scroll-mt-24"></div>
+
+<!-- Solo Audit Form -->
+<div id="solo-form" class="form-section hidden scroll-mt-24 px-6">
+    <div class="max-w-3xl mx-auto glass-luxury rounded-3xl p-12 my-20 luxury-shadow">
+        <div class="flex items-center gap-5 mb-10">
+            <div
+                class="p-4 bg-gradient-to-br from-primary-500/30 to-primary-600/10 rounded-2xl border border-primary-500/30">
+                <i data-lucide="user" class="text-primary-400 w-10 h-10"></i>
+            </div>
+            <h2
+                class="text-4xl font-black bg-gradient-to-r from-primary-300 to-primary-500 bg-clip-text text-transparent">
+                Solo Audit
+            </h2>
+        </div>
+        <p class="text-gray-400 mb-8 text-lg">Enter a YouTube channel URL or handle to get comprehensive AI-powered
+            analytics</p>
+        <form id="soloForm" onsubmit="analyzeSolo(event)">
+            <input type="text" id="channelName" placeholder="e.g. @MrBeast or youtube.com/c/MrBeast"
+                class="luxury-input w-full mb-6" required>
+            <button type="submit" class="w-full btn-luxury">
+                <span class="relative z-10">Analyze Channel</span>
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Battle Arena Form -->
+<div id="battle-form" class="form-section hidden scroll-mt-24 px-6">
+    <div class="max-w-3xl mx-auto glass-luxury rounded-3xl p-12 my-20 luxury-shadow">
+        <div class="flex items-center gap-5 mb-10">
+            <div
+                class="p-4 bg-gradient-to-br from-secondary-500/30 to-secondary-600/10 rounded-2xl border border-secondary-500/30">
+                <i data-lucide="swords" class="text-secondary-400 w-10 h-10"></i>
+            </div>
+            <h2
+                class="text-4xl font-black bg-gradient-to-r from-secondary-300 to-secondary-500 bg-clip-text text-transparent">
+                Battle Arena
+            </h2>
+        </div>
+        <p class="text-gray-400 mb-8 text-lg">Compare 2-5 YouTube channels side-by-side with statistical analysis</p>
+        <form id="battleForm" onsubmit="runBattle(event)">
+            <div id="channelInputs" class="space-y-4 mb-6">
+                <input type="text" name="channel1" placeholder="Channel 1 URL or handle" class="luxury-input w-full"
+                    required>
+                <input type="text" name="channel2" placeholder="Channel 2 URL or handle" class="luxury-input w-full"
+                    required>
+            </div>
+            <button type="button" onclick="addChannelInput()"
+                class="mb-6 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white font-medium transition-all">
+                <span class="flex items-center gap-2">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                    Add Channel (max 5)
+                </span>
+            </button>
+            <button type="submit" class="w-full btn-luxury"
+                style="background: linear-gradient(135deg, #8b5cf6, #a855f7);">
+                <span class="relative z-10">Start Battle</span>
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Truth Auditor Form -->
+<div id="truth-form" class="form-section hidden scroll-mt-24 px-6">
+    <div class="max-w-3xl mx-auto glass-luxury rounded-3xl p-12 my-20 luxury-shadow">
+        <div class="flex items-center gap-5 mb-10">
+            <div
+                class="p-4 bg-gradient-to-br from-accent-sky/30 to-accent-cyan/10 rounded-2xl border border-accent-sky/30">
+                <i data-lucide="shield-check" class="text-accent-sky w-10 h-10"></i>
+            </div>
+            <h2 class="text-4xl font-black bg-gradient-to-r from-sky-300 to-cyan-400 bg-clip-text text-transparent">
+                Truth Auditor
+            </h2>
+        </div>
+        <p class="text-gray-400 mb-8 text-lg">Verify claims in YouTube videos with AI-powered fact-checking</p>
+        <form id="truthForm" onsubmit="analyzeTruth(event)">
+            <input type="url" id="videoUrl" placeholder="Paste YouTube video URL (e.g. youtube.com/watch?v=...)"
+                class="luxury-input w-full mb-6" required>
+            <button type="submit" class="w-full btn-luxury"
+                style="background: linear-gradient(135deg, #38bdf8, #06b6d4);">
+                <span class="relative z-10">Fact-Check Video</span>
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Loading Spinner - Luxury -->
+<div id="loading" class="hidden fixed inset-0 bg-[#020617]/98 backdrop-blur-2xl flex items-center justify-center z-50">
+    <div class="text-center relative">
+        <!-- Massive pulsing glow -->
+        <div class="absolute inset-0 bg-primary-500/40 blur-[100px] rounded-full pulse-dot"></div>
+
+        <!-- Luxury multi-ring spinner -->
+        <div class="luxury-spinner relative mb-10 mx-auto">
+            <div class="spinner-ring-luxury"></div>
+            <div class="spinner-ring-luxury"></div>
+            <div class="spinner-ring-luxury"></div>
+        </div>
+
+        <!-- Loading text -->
+        <h3 class="text-3xl font-bold text-white tracking-wide mb-3 text-glow">
+            Analyzing with Gemini AI
+        </h3>
+        <p class="text-base text-gray-400 font-light">
+            Processing your request with advanced analytics...
+        </p>
+    </div>
+</div>
+
+<!-- Results Section -->
+<div id="results" class="hidden mt-16 scroll-mt-24">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-4xl font-bold gradient-text">Analysis Results</h2>
+            <button onclick="resetAnalysis()"
+                class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-xl transition font-medium border border-white/10 hover:border-white/20">
+                New Analysis
+            </button>
+        </div>
+        <div id="resultsContent" class="form-container rounded-3xl p-10">
+            <!-- Results will be dynamically inserted here -->
+        </div>
+    </div>
+</div>
+
+<!-- Error Message -->
+<div id="error" class="hidden max-w-2xl mx-auto mt-8">
+    <div class="bg-red-500/20 border border-red-500/50 rounded-lg p-4 text-red-200">
+        <p id="errorMessage"></p>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Initialize Lucide icons after DOM load
+    document.addEventListener('DOMContentLoaded', () => {
+        lucide.createIcons();
+
+        // Stagger item animations
+        const staggerItems = document.querySelectorAll('.stagger-item');
+        staggerItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            setTimeout(() => {
+                item.style.opacity = '1';
+            }, index * 100);
+        });
+    });
+
+    // Cursor position tracking for mode cards
+    function updateCursorPosition(event, card) {
+        const rect = card.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+    }
+</script>
+{% endblock %}
